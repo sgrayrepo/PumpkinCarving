@@ -90,8 +90,9 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
             return;
         }
         ItemStack inHand = event.getPlayer().getItemInHand();
-        if (inHand.getType().equals(Material.WOOD_AXE) || inHand.getType().equals(Material.IRON_AXE) ||
-                inHand.getType().equals(Material.GOLD_AXE) || inHand.getType().equals(Material.DIAMOND_AXE)) {
+        if (inHand.getType().equals(Material.WOOD_AXE) || inHand.getType().equals(Material.GOLD_AXE)
+                || inHand.getType().equals(Material.IRON_AXE) || inHand.getType().equals(Material.GOLD_AXE)
+                || inHand.getType().equals(Material.DIAMOND_AXE)) {
             event.getClickedBlock().setData((byte) 0);
             event.getPlayer().getItemInHand().setDurability((short) (event.getItem().getDurability() + 1));
         }
