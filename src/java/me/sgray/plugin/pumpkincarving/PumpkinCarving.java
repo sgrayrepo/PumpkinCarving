@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -51,7 +52,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
             return;
         }
         if (!event.isCancelled()) {
-            if (event.getBlock().getData() == (byte) 4) {
+            if (event.getBlock().getData() == (byte) 4 && !event.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
                 Location pLoc = event.getBlock().getLocation();
                 event.setCancelled(true);
 
