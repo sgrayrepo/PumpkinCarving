@@ -81,15 +81,18 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPumpkinInteract(PlayerInteractEvent event) {
-        if (!event.getAction().equals(Action.RIGHT_CLICK_AIR) &&
-                !event.getClickedBlock().getType().equals(Material.PUMPKIN) && event.getClickedBlock().getData() > (byte) 3) {
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR)
+                || event.getAction().equals(Action.LEFT_CLICK_BLOCK) || event.getAction().equals(Action.LEFT_CLICK_AIR)) {
+            return;
+        }
+        if (!event.getClickedBlock().getType().equals(Material.PUMPKIN) && event.getClickedBlock().getData() > (byte) 3) {
             return;
         }
         ItemStack inHand = event.getPlayer().getItemInHand();
         if (inHand.getType().equals(Material.WOOD_AXE) || inHand.getType().equals(Material.IRON_AXE) ||
                 inHand.getType().equals(Material.GOLD_AXE) || inHand.getType().equals(Material.DIAMOND_AXE)) {
             event.getClickedBlock().setData((byte) 0);
-            event.getItem().setDurability((short) (event.getItem().getDurability() - 1));
+            event.getPlayer().getItemInHand().setDurability((short) (event.getItem().getDurability() + 1));
         }
     }
 
