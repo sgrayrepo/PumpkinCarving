@@ -46,7 +46,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
         bState.update();
     }
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler
     public void onPumpkinBreak(BlockBreakEvent event) {
         if (!event.getBlock().getType().equals(Material.PUMPKIN)) {
             return;
