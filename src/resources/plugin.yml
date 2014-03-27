@@ -1,0 +1,5 @@
+name: PumpkinCarving
+version: 0.0.1
+main: me.sgray.plugin.pumpkincarving.PumpkinCarving
+author: SGray
+website: sgray.me
