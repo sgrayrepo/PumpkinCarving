@@ -9,6 +9,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -103,7 +104,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
                         return;
                     }
                 }
-                event.getClickedBlock().setData((byte) 0);
+                event.getClickedBlock().setData(getFaceByte(event.getBlockFace()));
                 event.getPlayer().getItemInHand().setDurability((short) (event.getItem().getDurability() + 1));
             }
         }
@@ -117,6 +118,21 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
                   + (metrics.isOptOut() ? ", but data sending is disabled." : " and data sending is enabled." ));
         } catch (IOException e) {
             getLogger().info("Failed to initialize PluginMetrics.");
+        }
+    }
+
+    private byte getFaceByte(BlockFace face) {
+        switch (face) {
+            case SOUTH:
+                return (byte) 0;
+            case WEST:
+                return (byte) 1;
+            case NORTH:
+                return (byte) 2;
+            case EAST:
+                return (byte) 3;
+            default:
+                return (byte) 0;
         }
     }
 
