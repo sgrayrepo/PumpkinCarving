@@ -116,7 +116,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
             getLogger().info("PluginMetrics hook initialized"
                   + (metrics.isOptOut() ? ", but data sending is disabled." : " and data sending is enabled." ));
         } catch (IOException e) {
-            getLogger().info("Failed to initialize metrics.");
+            getLogger().info("Failed to initialize PluginMetrics.");
         }
     }
 
