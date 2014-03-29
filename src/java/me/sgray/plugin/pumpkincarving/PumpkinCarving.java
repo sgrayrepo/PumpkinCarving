@@ -27,6 +27,7 @@ import org.mcstats.MetricsLite;
 public class PumpkinCarving extends JavaPlugin implements Listener {
     ArrayList<String> pLore = new ArrayList<String>();
     List<Location> placed = new LinkedList<Location>();
+    WEUtil weUtil;
 
     public void onDisable() {
         pLore.clear();
@@ -35,6 +36,9 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
         pLore.add("Uncarved");
+        if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
+            weUtil = new WEUtil(this);
+        }
         hookMetrics();
     }
 
@@ -94,6 +98,11 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
             if (inHand.getType().equals(Material.WOOD_AXE) || inHand.getType().equals(Material.STONE_AXE)
                     || inHand.getType().equals(Material.IRON_AXE) || inHand.getType().equals(Material.GOLD_AXE)
                     || inHand.getType().equals(Material.DIAMOND_AXE)) {
+                if (weUtil != null) {
+                    if (weUtil.isWand(inHand) && weUtil.hasActiveSession(event.getPlayer())) {
+                        return;
+                    }
+                }
                 event.getClickedBlock().setData((byte) 0);
                 event.getPlayer().getItemInHand().setDurability((short) (event.getItem().getDurability() + 1));
             }
