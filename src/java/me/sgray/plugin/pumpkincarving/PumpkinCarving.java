@@ -128,6 +128,9 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
                     }
                 }
                 event.getClickedBlock().setData(getFaceByte(event.getBlockFace()));
+                if (event.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
+                    return;
+                }
                 event.getPlayer().getItemInHand().setDurability((short) (event.getItem().getDurability() + 1));
             }
         }
