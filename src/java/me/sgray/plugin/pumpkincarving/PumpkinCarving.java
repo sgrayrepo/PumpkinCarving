@@ -37,7 +37,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
 
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
-        pLore.add("Uncarved");
+        setLoreName();
         if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
             weUtil = new WEUtil(this);
         }
@@ -50,6 +50,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
         if (cmdName.equals("pumpkincarving") && sender.hasPermission("pumpkincarving.admin")) {
             if (args.length == 1 && args[0].equals("reload")) {
                 reloadConfig();
+                setLoreName();
                 sender.sendMessage(ChatColor.YELLOW + getDescription().getName() + " config has been reloaded.");
             } else {
                 sender.sendMessage(getDescription().getName() + " version " + getDescription().getVersion());
@@ -161,6 +162,15 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
             if (block.getType().equals(Material.PUMPKIN)) {
                 block.setData((byte) 4);
             }
+        }
+    }
+
+    private void setLoreName() {
+        String lore = getConfig().getString("uncarved-lore");
+        if (pLore.isEmpty()) {
+            pLore.add(lore);
+        } else {
+            pLore.set(0, lore);
         }
     }
 }
