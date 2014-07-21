@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -38,6 +41,24 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
         if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
             weUtil = new WEUtil(this);
         }
+        saveDefaultConfig();
+        getCommand("pumpkincarving").setExecutor(this);
+    }
+
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        String cmdName = cmd.getName().toLowerCase();
+        if (cmdName.equals("pumpkincarving") && sender.hasPermission("pumpkincarving.admin")) {
+            if (args.length == 1 && args[0].equals("reload")) {
+                reloadConfig();
+                sender.sendMessage(ChatColor.YELLOW + getDescription().getName() + " config has been reloaded.");
+            } else {
+                sender.sendMessage(getDescription().getName() + " version " + getDescription().getVersion());
+                sender.sendMessage("Reload config using " + ChatColor.GREEN + "/pumpkincarving reload");
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @EventHandler
@@ -64,6 +85,10 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
                 ItemStack ucPumpkin = new ItemStack(Material.PUMPKIN, 1);
                 ItemMeta meta = ucPumpkin.getItemMeta();
                 meta.setLore(pLore);
+
+                String dispName = getConfig().getString("uncarved-name");
+                meta.setDisplayName(dispName);
+
                 ucPumpkin.setItemMeta(meta);
 
                 pLoc.getBlock().setType(Material.AIR);

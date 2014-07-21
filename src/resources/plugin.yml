@@ -1,6 +1,17 @@
 name: PumpkinCarving
-version: 0.0.6
+version: 0.0.7
 main: me.sgray.plugin.pumpkincarving.PumpkinCarving
 author: SGray
 website: sgray.me
 softdepend: [WorldEdit]
+
+commands:
+    pumpkincarving:
+        description: Utility command for the PumpkinCarving plugin
+        aliases: [pcarv, pcarving]
+        permission: pumpkincarving.admin
+
+permissions:
+    pumpkincarving.admin:
+        description: Required to view plugin version information and reload config
+        default: op
