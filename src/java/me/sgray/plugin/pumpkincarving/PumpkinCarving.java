@@ -1,6 +1,5 @@
 package me.sgray.plugin.pumpkincarving;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +21,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.MetricsLite;
 
 @SuppressWarnings("deprecation")
 public class PumpkinCarving extends JavaPlugin implements Listener {
@@ -40,7 +38,6 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
         if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
             weUtil = new WEUtil(this);
         }
-        hookMetrics();
     }
 
     @EventHandler
@@ -107,17 +104,6 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
                 event.getClickedBlock().setData(getFaceByte(event.getBlockFace()));
                 event.getPlayer().getItemInHand().setDurability((short) (event.getItem().getDurability() + 1));
             }
-        }
-    }
-
-    private void hookMetrics() {
-        try {
-            MetricsLite metrics = new MetricsLite(this);
-            metrics.start();
-            getLogger().info("PluginMetrics hook initialized"
-                  + (metrics.isOptOut() ? ", but data sending is disabled." : " and data sending is enabled." ));
-        } catch (IOException e) {
-            getLogger().info("Failed to initialize PluginMetrics.");
         }
     }
 
