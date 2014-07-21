@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.sgray.plugin</groupId>
     <artifactId>PumpkinCarving</artifactId>
-    <version>0.0.7</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>PumpkinCarving</name>
     <properties>
