@@ -166,6 +166,7 @@ public class PumpkinCarving extends JavaPlugin implements Listener {
                 block.setData((byte) 4);
             }
         }
+        placed.clear();
     }
 
     private void setLoreName() {
