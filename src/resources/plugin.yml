@@ -1,8 +1,8 @@
-name: PumpkinCarving
-version: 1.0.2
-main: me.sgray.plugin.pumpkincarving.PumpkinCarving
-author: SGray
-website: sgray.me
+name: ${name}
+version: ${version}
+main: ${mainClass}
+author: ${author}
+website: ${url}
 softdepend: [WorldEdit]
 
 commands:
