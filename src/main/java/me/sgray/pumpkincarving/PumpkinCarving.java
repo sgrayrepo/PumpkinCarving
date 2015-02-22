@@ -1,4 +1,4 @@
-package me.sgray.plugin.pumpkincarving;
+package me.sgray.pumpkincarving;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

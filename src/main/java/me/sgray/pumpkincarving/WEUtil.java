@@ -1,4 +1,4 @@
-package me.sgray.plugin.pumpkincarving;
+package me.sgray.pumpkincarving;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
